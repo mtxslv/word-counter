@@ -34,3 +34,14 @@ func TestAdd(t *testing.T){
 	}
 	
 }
+
+func TestMaxKeyValue(t *testing.T){
+	counter := initializeEmptyCounter()
+	counter.Add("livro")
+	counter.Add("livro")
+	counter.Add("cinema")	
+
+	if counter.maxKey != "livro" || counter.maxValue != 2 {
+		t.Fail()
+	}
+}
