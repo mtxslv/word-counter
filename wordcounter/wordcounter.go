@@ -4,6 +4,7 @@ type WordCounter struct {
 	countMap map[string]int // Must have a mapping from string
 	maxValue int 
 	maxKey string
+	howManyWords int
 }
 
 func NewWordCounter() *WordCounter {
@@ -11,6 +12,7 @@ func NewWordCounter() *WordCounter {
 		countMap: make(map[string]int),
 		maxValue: -1,
 		maxKey: "",
+		howManyWords: 0,
 	};
 }
 
@@ -26,9 +28,13 @@ func (c *WordCounter) Add (k string) {
 		c.countMap[k] = 1; // not the case, add
 	}
 
+	// keep the word that appears the most
 	if c.countMap[k] > c.maxValue {
 		c.maxValue = c.countMap[k] 
 		c.maxKey = k
 	}
+
+	// increase word count
+	c.howManyWords++
 }
 
