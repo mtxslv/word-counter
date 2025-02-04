@@ -5,7 +5,9 @@ type WordCounter struct {
 }
 
 func NewWordCounter() *WordCounter {
-	return &WordCounter{};
+	return &WordCounter{
+		countMap: make(map[string]int),
+	};
 }
 
 func (c *WordCounter) Add (k string) {
