@@ -2,11 +2,15 @@ package wordcounter
 
 type WordCounter struct {
 	countMap map[string]int // Must have a mapping from string
+	maxValue int 
+	maxKey string
 }
 
 func NewWordCounter() *WordCounter {
 	return &WordCounter{
 		countMap: make(map[string]int),
+		maxValue: -1,
+		maxKey: "",
 	};
 }
 
@@ -20,6 +24,11 @@ func (c *WordCounter) Add (k string) {
 		c.countMap[k]++; // if so, add 1
 	} else {
 		c.countMap[k] = 1; // not the case, add
+	}
+
+	if c.countMap[k] > c.maxValue {
+		c.maxValue = c.countMap[k] 
+		c.maxKey = k
 	}
 }
 
