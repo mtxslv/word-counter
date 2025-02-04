@@ -45,3 +45,15 @@ func TestMaxKeyValue(t *testing.T){
 		t.Fail()
 	}
 }
+
+func TestHowManyWords(t *testing.T) {
+	counter := initializeEmptyCounter()
+	counter.Add("livro")
+	counter.Add("livro")
+	counter.Add("cinema")	
+
+	if counter.howManyWords != 3 {
+		t.Fail()
+	}
+	
+}
