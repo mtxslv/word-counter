@@ -76,7 +76,7 @@ func TestHowManyWords(t *testing.T) {
 func TestSortedKeys(t *testing.T) {
 	counter := initializeCounter()
 	var expectedKeys, keys []string
-	keys = counter.getKeysByOrderDesc()
+	keys = counter.GetKeysByOrderDesc()
 	expectedKeys = []string{"livro", "cinema", "praia"}
 
 	t.Log(keys)
@@ -84,5 +84,22 @@ func TestSortedKeys(t *testing.T) {
 	if !reflect.DeepEqual(keys, expectedKeys) {
 		t.Fail()
 	}
-	
+}
+
+func TestCountWords(t *testing.T) {
+	counter := initializeEmptyCounter()
+	words := []string{"livro", "livro", "cinema", "praia", "livro", "cinema"}
+
+	counter.Count(&words)
+
+	expectedCount := map[string]int{
+		"livro": 3,
+		"cinema": 2,
+		"praia": 1,
+	}
+
+	if !reflect.DeepEqual(expectedCount, counter.countMap) {
+		t.Fail()
+	}
+
 }
