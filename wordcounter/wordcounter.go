@@ -2,6 +2,7 @@ package wordcounter
 
 import (
 	"slices"
+	"strings"
 )
 
 type WordCounter struct {
@@ -69,4 +70,13 @@ func (c *WordCounter) Count(words *[]string) {
 	for _, word := range *words {
 		c.Add(word)
 	} 
+}
+
+func CleanText(text string) string {
+	punctuationMarks := []string{".", ",", "?", "!", "...", "_", "-", ":", ";", "\n", "\r", "\t","\ufeff", "--", "«", "»"}
+    processedString := text
+    for _, mark := range punctuationMarks {
+        processedString = strings.ReplaceAll(processedString, mark, " ")
+    }
+	return processedString
 }
