@@ -42,7 +42,7 @@ func (c *WordCounter) Add (k string) {
 	c.howManyWords++
 }
 
-func (c *WordCounter) getKeysByOrderDesc() []string {
+func (c *WordCounter) GetKeysByOrderDesc() []string {
 
 	// Put all keys in an array
 	allKeys := make([]string,len(c.countMap)) // empty
@@ -63,4 +63,10 @@ func (c *WordCounter) getKeysByOrderDesc() []string {
 	)
 
 	return allKeys
+}
+
+func (c *WordCounter) Count(words *[]string) {
+	for _, word := range *words {
+		c.Add(word)
+	} 
 }
