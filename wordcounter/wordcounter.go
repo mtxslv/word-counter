@@ -80,3 +80,15 @@ func CleanText(text string) string {
     }
 	return processedString
 }
+
+func SplitText(text string) []string {
+    splittedString := strings.Split(text," ")
+    var words []string
+    for _, splitted := range splittedString {
+        // Remove empty characters
+        if len(splitted) > 0 {
+            words = append(words, splitted)
+        }
+    }
+    return words
+}
