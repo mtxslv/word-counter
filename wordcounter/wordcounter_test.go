@@ -1,9 +1,24 @@
 package wordcounter
 
-import "testing"
+import (
+	"testing"
+	"reflect"
+)
+
 
 func initializeEmptyCounter() *WordCounter{
 	return NewWordCounter()
+}
+
+func initializeCounter() *WordCounter{
+	c := NewWordCounter()
+	c.Add("livro")
+	c.Add("livro")
+	c.Add("cinema")
+	c.Add("praia")
+	c.Add("livro")
+	c.Add("cinema")
+	return c
 }
 
 
@@ -53,6 +68,20 @@ func TestHowManyWords(t *testing.T) {
 	counter.Add("cinema")	
 
 	if counter.howManyWords != 3 {
+		t.Fail()
+	}
+	
+}
+
+func TestSortedKeys(t *testing.T) {
+	counter := initializeCounter()
+	var expectedKeys, keys []string
+	keys = counter.getKeysByOrderDesc()
+	expectedKeys = []string{"livro", "cinema", "praia"}
+
+	t.Log(keys)
+
+	if !reflect.DeepEqual(keys, expectedKeys) {
 		t.Fail()
 	}
 	
