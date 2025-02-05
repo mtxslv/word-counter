@@ -112,3 +112,12 @@ func TestCleanText(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestSplitText(t *testing.T) {
+	text := "o rato roeu a     roupa do rei de roma"
+	splittedText := SplitText(text)
+	expected := []string{"o", "rato", "roeu", "a", "roupa", "do", "rei", "de", "roma"}
+	if !reflect.DeepEqual(expected, splittedText) {
+		t.Fail()
+	}
+}
