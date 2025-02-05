@@ -101,5 +101,14 @@ func TestCountWords(t *testing.T) {
 	if !reflect.DeepEqual(expectedCount, counter.countMap) {
 		t.Fail()
 	}
+}
 
+func TestCleanText(t *testing.T) {
+	text := ",o rato roeu.?a!..._roupa-:;\ndo rei\r\t\ufeffde--«roma»"
+	cleanedText := CleanText(text)
+	// t.Log(cleanedText)
+	expected := " o rato roeu  a     roupa    do rei   de   roma "
+	if cleanedText != expected {
+		t.Fail()
+	}
 }
