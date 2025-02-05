@@ -1,5 +1,9 @@
 package wordcounter
 
+import (
+	"slices"
+)
+
 type WordCounter struct {
 	countMap map[string]int // Must have a mapping from string
 	maxValue int 
@@ -38,3 +42,25 @@ func (c *WordCounter) Add (k string) {
 	c.howManyWords++
 }
 
+func (c *WordCounter) getKeysByOrderDesc() []string {
+
+	// Put all keys in an array
+	allKeys := make([]string,len(c.countMap)) // empty
+	var i int = 0
+	for k := range c.countMap {
+		allKeys[i] = k
+		i++
+	}
+
+	// anonymous func for comparison
+	keyCmp := func(k1, k2 string) int {
+		return c.countMap[k2] - c.countMap[k1]
+	}
+	// Sort keys desc
+	slices.SortFunc(
+		allKeys,
+		keyCmp,	
+	)
+
+	return allKeys
+}
